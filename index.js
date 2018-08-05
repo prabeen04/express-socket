@@ -3,7 +3,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const mongoDB_URL = require('./config/config').mongodbURL;
 //localhot port
-const port = 4001
+const port = process.env.PORT || 4001;
 
 const app = express()
 
@@ -26,7 +26,7 @@ io.on('connection', socket => {
     })
     socket.on('TYPING', (user) => {
         console.log(user)
-        socket.broadcast('TYPING', user)
+        socket.broadcast.emit('USER_TYPING', user)
     })
     socket.on('disconnect', () => {
         console.log('user disconnected')
