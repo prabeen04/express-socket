@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
-const mongoDB_URL = require('./config/config').mongodbURL;
+// const mongoDB_URL = require('./config/config').mongodbURL;
 //localhot port
 const port = process.env.PORT || 4001;
 
