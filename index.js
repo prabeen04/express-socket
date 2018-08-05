@@ -18,9 +18,16 @@ app.get('/', (req, res) => {
 })
 
 // This is what the socket.io syntax is like, we will work this later
-io.on('connection', socket => {``
-    console.log('User connected')
-
+io.on('connection', socket => {
+    console.log(socket.id)
+    socket.on('SEND_MESSAGE', (message) => {
+        console.log(message)
+        io.emit('RECEIVE_MESSAGE', message)
+    })
+    socket.on('TYPING', (user) => {
+        console.log(user)
+        socket.broadcast('TYPING', user)
+    })
     socket.on('disconnect', () => {
         console.log('user disconnected')
     })
